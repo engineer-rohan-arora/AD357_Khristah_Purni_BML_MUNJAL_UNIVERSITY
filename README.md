@@ -2,7 +2,7 @@
 
 ## Acknowledgement 
 
-We would like to express our sincere gratitude and thanks to Smart India Hackathon 2020, MHRD, Innovation Cell, and Quantum University for their valuable guidance and constant encouragement throughout the work. This work is simply the reflection of their thoughts, ideas, and concepts and all their efforts.
+We would like to express our sincere gratitude and thanks to Smart India Hackathon 2020, MHRD Innovation Cell, and Quantum University for their valuable guidance and constant encouragement throughout the work. This work is simply the reflection of their thoughts, ideas, and concepts and all their efforts.
 Special and heartfelt thanks go to our mentors Mr. Mahendra Swain and Mr. Deepak Bhatt for their unselfish help, we got whenever needed during the course of our work.
 We sincerely thank all my team members of Khristah Purni.
 
