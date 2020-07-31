@@ -20,7 +20,7 @@ import com.example.weather.utils.UnitConvertor;
 import com.example.weather.R;
 
 public class DashClockWeatherExtension extends DashClockExtension {
-    private static final Uri URI_BASE = Uri.parse("content://cz.martykan.forecastie.authority");
+    private static final Uri URI_BASE = Uri.parse("content://com.example.weather.authority");
     private static final String UPDATE_URI_PATH_SEGMENT = "dashclock/update";
 
     @Override
