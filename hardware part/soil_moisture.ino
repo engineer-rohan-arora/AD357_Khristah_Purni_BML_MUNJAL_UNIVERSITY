@@ -1,34 +1,29 @@
 
-//#define BLYNK_MAX_SENDBYTES 256
-//#define BLYNK_PRINT Serial
+#define BLYNK_MAX_SENDBYTES 256
+#define BLYNK_PRINT Serial
 
 #include <ESP8266WiFi.h>
-//#include <FirebaseArduino.h>
-//#include <BlynkSimpleEsp8266.h>
+#include <BlynkSimpleEsp8266.h>
 
 
-
-////#define FIREBASE_HOST "sja-alumni.firebaseio.com"
-///#define FIREBASE_AUTH "qdM8yON8Kqy6zfaHLpYVoiutURlJ4bg2nIrI2ZuT"
-
-//char auth[] = "3C-UaXJChYEmrBi1gOlUWt5U9DaGorde";
+char auth[] = "3C-UaXJChYEmrBi1gOlUWt5U9DaGorde";
 
 String apiKey = "EFOTEIN4HWLKMI5N"; 
 
-// Your WiFi credentials.
-// Set password to "" for open networks.
+//  WiFi credentials.
+
 char ssid[] = "saxena family";
 char pass[] = "chitransh@545";
 const char* server = "api.thingspeak.com";
 
-const int sensor_pin = A0;  /* Connect Soil moisture analog sensor pin to A0 of NodeMCU */
+const int sensor_pin = A0;  
 
 WiFiClient client;
 
 void setup() {
-  Serial.begin(9600); /* Define baud rate for serial communication */
-  //Blynk.begin(auth, ssid, pass);
-  //Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  Serial.begin(9600);
+  Blynk.begin(auth, ssid, pass);
+ 
 }
 
 void sendNotification(String message){
@@ -57,23 +52,15 @@ void loop() {
  Serial.print(moisture_percentage );
  Serial.println("%");
 
-// Firebase.pushString("Soil_Moisture", moisture_percentage);
  delay(1000);
 
-  /*if (Firebase.failed()) 
-    {
- 
-      Serial.print("pushing /logs failed:");
-      Serial.println(Firebase.error()); 
-      return;
-  }*/
   if (isnan(moisture_percentage)) 
                  {
                      Serial.println("Failed to read from soil moisture sensor");
                       return;
                  }
 
-                         if (client.connect(server,80))   //   "184.106.153.149" or api.thingspeak.com
+                         if (client.connect(server,80))   
                       {  
                             
                              String postStr = apiKey;
@@ -100,6 +87,17 @@ void loop() {
  
           Serial.println("Waiting...");
   
-  // thingspeak needs minimum 15 sec delay between updates, i've set it to 30 seconds
   delay(10000);
+
+   if(moisture_percentage >=1 && moisture_percentage <=40)
+ {
+  Blynk.notify("Don't Worry you are safe..");
+ }
+ else if (moisture_percentage >=40 && moisture_percentage <=80)
+ {
+  Blynk.notify("Be alert! Flood chances raise..");
+ }
+ else if (moisture_percentage >=80 && moisture_percentage <=140){
+  Blynk.notify("Flood overflow");
+ }
 }
