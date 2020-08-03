@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+
+
+
+    <title>Web Portal</title>
+
+    <style>
+        * {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+html, body {
+  font-family: 'Nunito', sans-serif;
+  color: white;
+  height: 100%;
+  min-height: 900px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50% 50px auto 50px;
+      grid-template-rows: 50% 50px auto 50px;
+  position: relative;
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear.svg?alt=media&token=da06cece-0b16-4772-8e92-982697a4bda1');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #7A411B;
+}
+
+/* Settings */
+#settings-btn {
+  position: absolute;
+  top: 20px;
+  left: 70%;
+  z-index: 5;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  -webkit-transition: opacity .2s ease;
+  transition: opacity .2s ease;
+}
+
+#settings-btn:hover {
+  opacity: 0.8;
+}
+
+#settings-btn:active {
+  opacity: 0.6;
+}
+
+.dropdown {
+  display: none;
+  -ms-grid-rows: 25% 75%;
+      grid-template-rows: 25% 75%;
+  place-items: center;
+  position: absolute;
+  top: 60px;
+  left: 58%;
+  z-index: 5;
+  height: 400px;
+  width: 300px;
+  background-color: white;
+  -webkit-box-shadow: 0 0 80px rgba(141, 64, 12, 0.6);
+          box-shadow: 0 0 80px rgba(141, 64, 12, 0.6);
+  border-radius: 10px;
+  color: brown;
+}
+
+#system {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 30% auto auto;
+      grid-template-columns: 30% auto auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+}
+
+#system button {
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 70px;
+  height: 30px;
+  background-color: rgba(255, 188, 140, 0.6);
+  border-radius: 7px;
+  color: white;
+  font-size: 0.85rem;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+}
+
+#system button:hover {
+  background-color: rgba(255, 188, 140, 0.8);
+}
+
+#system button:active {
+  background-color: #ffbc8c;
+}
+
+#system button.active {
+  background-color: #ffbc8c;
+}
+
+#backgrounds {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 90%;
+}
+
+#backgrounds div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px 0 20px;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+}
+
+#backgrounds div:hover {
+  background-color: rgba(255, 188, 140, 0.2);
+}
+
+#backgrounds div:active {
+  background-color: rgba(255, 188, 140, 0.4);
+}
+
+#backgrounds div span {
+  -ms-grid-column-align: start;
+      justify-self: start;
+}
+
+#backgrounds div img {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  height: 25px;
+}
+
+#map {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 90%;
+}
+
+#map button {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px 0 20px;
+  height: 50px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+}
+
+#map button:hover {
+  background-color: rgba(255, 188, 140, 0.2);
+}
+
+#map button:active {
+  background-color: rgba(255, 188, 140, 0.4);
+}
+
+.close-dropdown {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(102, 40, 4, 0.4);
+}
+
+.show-grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+.show-block {
+  display: block;
+}
+
+/* Today's Forecast */
+.forecast {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: 1 / 1 / 1 / 1;
+  place-self: center;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.description {
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.location {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.temperature {
+  font-size: 4.5rem;
+  font-weight: 900;
+}
+
+/* Five Days Forecast */
+.five-day-forecast {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: 3 / 1 / 3 / 1;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  font-size: 1.1rem;
+}
+
+#current-day {
+  position: relative;
+  top: 42px;
+  left: 23px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  pointer-events: none;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 100%;
+}
+
+.five-day-forecast ul {
+  width: 35vw;
+}
+
+.five-day-forecast ul li {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 70px;
+  border-radius: 10px;
+  padding: 0 40px 0 40px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-transition: background-color .13s ease-out;
+  transition: background-color .13s ease-out;
+}
+
+.five-day-forecast ul li:hover {
+  background-color: rgba(255, 188, 140, 0.4);
+}
+
+.five-day-forecast ul li:active {
+  background-color: rgba(141, 82, 40, 0.4);
+}
+
+.five-day-forecast ul li div {
+  -ms-grid-column-align: right;
+      justify-self: right;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  place-items: center;
+  width: 30%;
+}
+
+.five-day-forecast ul li div img {
+  width: 30px;
+  height: 30px;
+}
+
+.details {
+  display: none;
+  -ms-grid-columns: 8% 42% 42% 8%;
+      grid-template-columns: 8% 42% 42% 8%;
+  -ms-grid-rows: 18% 30% 45% 7%;
+      grid-template-rows: 18% 30% 45% 7%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto 10px auto;
+  height: 230px;
+  width: 97%;
+  background-color: rgba(141, 82, 40, 0.4);
+  border-radius: 0 0 10px 10px;
+  -webkit-box-shadow: 0 5px 7px rgba(0, 0, 0, 0.02);
+          box-shadow: 0 5px 7px rgba(0, 0, 0, 0.02);
+  -webkit-animation: animate-open-details 0.3s;
+          animation: animate-open-details 0.3s;
+}
+
+.details > span {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 1 / 2 / 1 / 3;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  font-size: 0.8rem;
+}
+
+.details h4 {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 2 / 2 / 2 / 3;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.min-max-temp, .humidity-wind {
+  font-size: 0.9rem;
+  width: 70%;
+}
+
+.min-max-temp {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-area: 3 / 2 / 3 / 3;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+      grid-template-columns: auto auto;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
+  grid-row-gap: 20px;
+}
+
+.max-temp, .min-temp {
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+.humidity-wind {
+  -ms-grid-row: 3;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-area: 3 / 3 / 3 / 4;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  -ms-grid-rows: auto auto;
+      grid-template-rows: auto auto;
+  grid-row-gap: 20px;
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+.humidity-wind img {
+  -ms-grid-column-align: end;
+      justify-self: end;
+  height: 25px;
+}
+
+.humidity {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 2;
+  grid-area: 1 / 2 / 1 / 4;
+}
+
+.humidity, .wind {
+  -ms-grid-column-align: end;
+      justify-self: end;
+}
+
+.active-day {
+  background-color: rgba(141, 82, 40, 0.4);
+  -webkit-box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+.show-details {
+  display: -ms-grid;
+  display: grid;
+}
+
+.animate-details {
+  -webkit-animation: animate-close-details .3s;
+          animation: animate-close-details .3s;
+}
+
+@-webkit-keyframes animate-open-details {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 230px;
+    opacity: 1;
+  }
+}
+
+@keyframes animate-open-details {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  100% {
+    height: 230px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes animate-close-details {
+  0% {
+    height: 230px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes animate-close-details {
+  0% {
+    height: 230px;
+    opacity: 1;
+  }
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+footer {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: 4 / 1 / 4 / 1;
+  height: 100%;
+  width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+  html, body {
+    min-height: 800px;
+  }
+  .five-day-forecast {
+    top: 50%;
+    font-size: 0.99rem;
+  }
+  .five-day-forecast ul {
+    width: 50vw;
+  }
+  #settings-btn {
+    left: 80%;
+  }
+  .dropdown {
+    left: 55%;
+  }
+  .description {
+    font-size: 2.16rem;
+  }
+  .location {
+    font-size: 1.44rem;
+  }
+  .temperature {
+    font-size: 4.05rem;
+  }
+  .details > span {
+    font-size: 0.72rem;
+  }
+  .details h4 {
+    font-size: 1.17rem;
+  }
+  .min-max-temp, .humidity-wind {
+    font-size: 0.81rem;
+  }
+  .humidity-wind img {
+    height: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  html, body {
+    min-height: 300px;
+    min-width: 400px;
+  }
+  body {
+    -ms-grid-rows: 50% 0 auto 50px;
+        grid-template-rows: 50% 0 auto 50px;
+  }
+  #settings-btn {
+    left: 90%;
+  }
+  .dropdown {
+    left: 30%;
+  }
+  .description {
+    font-size: 1.92rem;
+  }
+  .location {
+    font-size: 1.28rem;
+  }
+  .temperature {
+    font-size: 3.6rem;
+  }
+  .five-day-forecast {
+    top: 50%;
+    font-size: 0.88rem;
+  }
+  .five-day-forecast ul {
+    width: 80vw;
+  }
+  .details > span {
+    font-size: 0.64rem;
+  }
+  .details h4 {
+    font-size: 1.04rem;
+  }
+  .min-max-temp, .humidity-wind {
+    font-size: 0.72rem;
+  }
+  .humidity-wind img {
+    height: 20px;
+  }
+}
+/*# sourceMappingURL=style.css.map */
+    </style>
+
+    <script>
+
+window.addEventListener('load', ()=> {
+    let lon;
+    let lat;
+
+    let descriptionSelector = document.querySelector(".description");
+    let temperatureSelector = document.querySelector(".temperature");
+    let locationSelector = document.querySelector(".location");
+    
+    let fiveDayTemps = new Array(5);
+    let fiveDayMaxTemps = new Array(5);
+    let fiveDayMinTemps = new Array(5);
+    let fiveDayWind = new Array(5);
+    let weatherCode = new Array(5);
+
+    let fiveDays = document.querySelectorAll(".details > span");
+    let description = document.querySelectorAll(".details h4");
+    let temp = document.querySelectorAll(".temp");
+    let day = document.querySelectorAll(".day");
+    let weatherImg = document.querySelectorAll(".weather-img");
+    let maxTemp = document.querySelectorAll(".max-temp");
+    let minTemp = document.querySelectorAll(".min-temp");
+    let humidity = document.querySelectorAll(".humidity");
+    let arrow = document.querySelectorAll(".humidity-wind img");
+    let wind = document.querySelectorAll(".wind");
+
+    let week = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    let today = new Date();
+    let dayName = today.getDay();
+
+
+    
+    /* Users Location */
+    if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+
+
+    function geoSuccess(position) {
+        lon = position.coords.longitude;
+        lat = position.coords.latitude;
+
+        const api = `https://api.weatherbit.io/v2.0/forecast/daily?lat=24.3070759&lon=72.3495197&key=e0befcd35dd548888966eebc1dd8f0da`;
+
+        fetch(api)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+
+                console.log(data);
+
+                /* Today's forecast and location */
+                descriptionSelector.textContent = data.data[0].weather.description;
+                locationSelector.textContent = data.city_name + ', ' + data.country_code;
+
+
+                /* Get forecast for the next five days */
+                var i;
+                for(i=0; i<5; i++) {
+                    description[i].textContent = data.data[i].weather.description;
+                    fiveDayTemps[i] = data.data[i].temp;
+                    fiveDayMaxTemps[i] = data.data[i].max_temp;
+                    fiveDayMinTemps[i] = data.data[i].min_temp;
+                    humidity[i].textContent = data.data[i].rh + '%';
+                    fiveDayWind[i] = data.data[i].wind_spd;
+                    weatherCode[i] = data.data[i].weather.code;
+                }
+
+                /* Apply info */
+                update();
+
+
+                /* Get current day and four upcoming days */
+                i = dayName;
+                day.forEach(function(element) {
+                    element.textContent = week[i++%7];
+                });
+
+                var dd, mm, yyyy, date;
+
+                i = 0;
+                fiveDays.forEach(function(element) {
+                    date = data.data[i++].datetime;
+                    dd = date.substring(8,10);
+                    mm = date.substring(5,7);
+                    yyyy = date.substring(0,4);
+                    element.textContent = dd + '.' + mm + '.' + yyyy;
+                });
+
+                /* Apply weather icons */
+                applyWeatherImg(weatherCode);
+                applyBackground(weatherCode[0]);
+
+
+                /* Wind direction in degrees */
+                var direction;
+
+                i = 0;
+                arrow.forEach(function(element) {
+                    direction = data.data[i++].wind_dir;
+                    element.style.transform = "rotate(" + direction + "deg)";
+                    element.setAttribute('alt', direction + ' degrees');
+                });
+            });
+    }
+
+
+    function geoError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+
+
+    var dayDetails = document.querySelectorAll(".five-day-forecast ul li")
+    var details = document.querySelectorAll(".details");
+    let delay = 0;
+
+    dayDetails[0].addEventListener('click', function() {
+        if(details[0].classList.contains("show-details")) {
+            delay = 300;
+            details[0].classList.add("animate-details");
+        } else {
+            delay = 0;
+            details[0].classList.remove("animate-details");
+        }
+
+        dayDetails[0].classList.toggle("active-day");
+        
+        setTimeout(function() {
+            details[0].classList.toggle("show-details");
+        }, delay);
+    });
+    dayDetails[1].addEventListener('click', function() {
+        if(details[1].classList.contains("show-details")) {
+            delay = 300;
+            details[1].classList.add("animate-details");
+        } else {
+            delay = 0;
+            details[1].classList.remove("animate-details");
+        }
+
+        dayDetails[1].classList.toggle("active-day");
+        
+        setTimeout(function() {
+            details[1].classList.toggle("show-details");
+        }, delay);
+    });
+    dayDetails[2].addEventListener('click', function() {
+        if(details[2].classList.contains("show-details")) {
+            delay = 300;
+            details[2].classList.add("animate-details");
+        } else {
+            delay = 0;
+            details[2].classList.remove("animate-details");
+        }
+
+        dayDetails[2].classList.toggle("active-day");
+        
+        setTimeout(function() {
+            details[2].classList.toggle("show-details");
+        }, delay);
+    });
+    dayDetails[3].addEventListener('click', function() {
+        if(details[3].classList.contains("show-details")) {
+            delay = 300;
+            details[3].classList.add("animate-details");
+        } else {
+            delay = 0;
+            details[3].classList.remove("animate-details");
+        }
+
+        dayDetails[3].classList.toggle("active-day");
+        
+        setTimeout(function() {
+            details[3].classList.toggle("show-details");
+        }, delay);
+    });
+    dayDetails[4].addEventListener('click', function() {
+        if(details[4].classList.contains("show-details")) {
+            delay = 300;
+            details[4].classList.add("animate-details");
+        } else {
+            delay = 0;
+            details[4].classList.remove("animate-details");
+        }
+
+        dayDetails[4].classList.toggle("active-day");
+        
+        setTimeout(function() {
+            details[4].classList.toggle("show-details");
+        }, delay);
+    });
+
+
+
+
+    function applyWeatherImg(weatherCode) {
+        let imgName;
+        var i = 0;
+        weatherImg.forEach(function (element) {
+            switch(weatherCode[i++]) {
+                case 500:
+                    imgName = "light-rain";
+                    break;
+                case 800:
+                    imgName = "clear-sky";
+                    break;
+                case 801:
+                    imgName = "few-clouds";
+                    break;
+                case 802:
+                    imgName = "scattered-clouds";
+                    break;
+                case 803:
+                    imgName = "broken-clouds";
+                    break;
+                case 804:
+                    imgName = "overcast-clouds";
+                    break;
+                default:
+                    imgName = "unknown";
+            }
+
+            element.src = "img/weather-images/" + imgName + ".svg";
+        });
+    }
+
+    /*Background changer*/
+    function applyBackground(todaysWeatherCode){
+        let backgroundName;
+        if (todaysWeatherCode == 500) {
+            backgroundName = "rain";
+        } else if (todaysWeatherCode == 800) {
+            backgroundName = "clear";
+        } else {
+            backgroundName = "clouds";
+        }
+        body.style.backgroundImage = "url(https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear.svg?alt=media&token=da06cece-0b16-4772-8e92-982697a4bda1)";
+    }
+    
+
+    
+    /* Settings dropdown menu */
+    let dropdown = document.querySelector(".dropdown");
+    let openDropdown = document.getElementById("settings-btn");
+    let closeDropdown = document.querySelector(".close-dropdown"); // Background div that tracks when user clicks away from dropdown
+
+    /* When settings button is clicked show/hide dropdown and closeDropdown */
+    openDropdown.addEventListener('click', function() {
+        dropdown.classList.toggle("show-grid");
+        closeDropdown.classList.toggle("show-block");
+    });
+
+    /* When user clicks away from dropdown hide both dropdown and closeDropdown */
+    closeDropdown.addEventListener('click', function() {
+        dropdown.classList.remove("show-grid");
+        closeDropdown.classList.remove("show-block");
+        applyCloseDropdown();
+    });
+
+
+
+
+    /* Change background image */
+    let body = document.querySelector("body");
+    let changeBackground = document.querySelectorAll("#backgrounds div");
+
+    changeBackground[0].addEventListener('click', function() {
+        body.style.backgroundImage = "url('https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear.svg?alt=media&token=da06cece-0b16-4772-8e92-982697a4bda1')";
+        applyCloseDropdown();
+    });
+    changeBackground[1].addEventListener('click', function() {
+        body.style.backgroundImage = "url('https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clouds.svg?alt=media&token=acdae784-2699-4f05-a9c5-13c8e6b26726')";
+        applyCloseDropdown();
+    });
+    changeBackground[2].addEventListener('click', function() {
+        body.style.backgroundImage = "url('https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/rain.svg?alt=media&token=3ed79093-a006-41a3-8207-c79f8845b5fb')";
+        applyCloseDropdown();
+    });
+
+
+
+
+    let system = document.querySelector(".active");
+    let buttons = document.querySelectorAll("#system > button");
+
+    /* Metric */
+    buttons[0].addEventListener('click', function() {
+        buttons[0].classList.add('active');
+        buttons[1].classList.remove('active');
+        selectSystem();
+        applyCloseDropdown();
+    });
+    /* Imperial */
+    buttons[1].addEventListener('click', function() {
+        buttons[0].classList.remove('active');
+        buttons[1].classList.add('active');
+        selectSystem();
+        applyCloseDropdown();
+    });
+
+    /* User select system measurement */
+    function selectSystem() { 
+        system = document.querySelector(".active");
+        update();
+    }
+
+
+
+    function applyCloseDropdown() {
+        dropdown.classList.remove("show-grid");
+        closeDropdown.classList.remove("show-block");
+    }
+
+
+
+
+
+
+    /* Update and apply temps and speed */
+    function update() {
+        temperatureSelector.textContent = tempSystem(fiveDayTemps[0] , system.id);
+
+        i = 0;
+        temp.forEach(function(element) {
+            element.textContent = tempSystem(fiveDayTemps[i++], system.id);
+        });
+
+        i = 0;
+        maxTemp.forEach(function(element) {
+            element.textContent = tempSystem(fiveDayMaxTemps[i++], system.id);
+        });
+
+        i = 0;
+        minTemp.forEach(function(element) {
+            element.textContent = tempSystem(fiveDayMinTemps[i++], system.id);
+        });
+
+        i = 0;
+        wind.forEach(function(element) {
+            element.textContent = speedSystem(fiveDayWind[i++], system.id);
+        });
+    }
+
+
+    /* Calculate temp system */
+    function tempSystem(temp, sc) {
+        if (sc == "metric") {
+            return Math.round(temp) + "°C";
+        } else {
+            return Math.round((temp * 9/5) + 32) + "°F";
+        }
+    }
+
+    function speedSystem(speed, sc) {
+        if (sc == "metric") {
+            return Math.round(speed * 3.6) + " km/h";
+        } else {
+            return Math.round((speed * 3.6) / 1.609) + " mph";
+        }
+    }
+
+    /* let body = document.querySelector("body");
+
+    if (today.getHours() < 6 || today.getHours() > 20) {
+        body.style.backgroundImage = "url('img/clear-night.svg')";
+        body.style.backgroundColor = "#2A3276";
+
+        dropdown.style.color = "rgb(14, 24, 113)";
+        dropdown.style.boxShadow = "0 0 80px rgba(12, 27, 141, 0.6)";
+        closeDropdown.style.backgroundColor = "rgba(4, 34, 102, 0.4)";
+    } */
+});
+    </script>
+
+</head>
+<body>
+
+    <img id="settings-btn" src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/settings.svg?alt=media&token=a344ed31-ea1e-4105-b8b3-e09e2e3aea52" alt="">
+    <section class="dropdown">
+        
+        <div id="system">
+            <h4>System</h4>
+            <button id="metric" class="active">Metric</button>
+            <button id="imperial">Imperial</button>
+        </div>
+        
+        <div id="backgrounds">
+            <h4>Backgrounds</h4>
+            <div>
+                <span>Clear</span>
+                <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear-day-mini.svg?alt=media&token=9639ea87-14a8-45f2-9dbe-e802f1384d1f" alt="">
+            </div>
+            <div>
+                <span>Clouds</span>
+                <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear-day-mini.svg?alt=media&token=9639ea87-14a8-45f2-9dbe-e802f1384d1f" alt="">
+            </div>
+            <div>
+                <span>Rain</span>
+                <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/clear-day-mini.svg?alt=media&token=9639ea87-14a8-45f2-9dbe-e802f1384d1f" alt="">
+            </div>
+        </div>
+        <div id="map" style="padding-top: 20px;">
+            <form action="{{ url_for('predict')}}"method="post">
+                <button type="submit" class="btn btn-primary btn-block btn-large" style="font-size: 20px; color: black; font-weight: 500;">Flood Predict</button>
+            </form>     
+        </div>
+    </section>
+
+    <div class="close-dropdown"></div>
+
+    <section class="forecast">
+        <h2 class="description">Weather description</h2>
+        <h1 class="location">City</h1>
+        <h2 class="temperature">--</h2>
+    </section>
+
+    <section class="five-day-forecast">
+        <div id="current-day"></div>
+        
+        <ul>
+            <li>
+                <span class="day">Day 1</span>
+                <div>
+                    <span class="temp">--</span>
+                    <img src="" alt="" class="weather-img">
+                </div>
+            </li>
+            
+            <div class="details">
+                <span>10/10/2019</span>
+
+                <h4>Overcast clouds</h4>
+
+                <div class="min-max-temp">
+                    <span>Max temp</span>
+                    <span class="max-temp">30</span>
+
+                    <span>Min temp</span>
+                    <span class="min-temp">25</span>
+                </div>
+
+                <div class="humidity-wind">
+                    <span>Humidity</span>
+                    <span class="humidity">70%</span>
+
+                    <span>Wind</span>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/arrow.svg?alt=media&token=cd099dc0-d014-4525-ae34-2f4023918095" alt="">
+                    <span class="wind">10km/h</span>
+                </div>
+            </div>
+
+            <li>
+                <span class="day">Day 2</span>
+                <div>
+                    <span class="temp">--</span>
+                    <img src="" alt="" class="weather-img">
+                </div>
+            </li>
+
+            <div class="details">
+                <span>10/10/2019</span>
+
+                <h4>Overcast clouds</h4>
+
+                <div class="min-max-temp">
+                    <span>Max temp</span>
+                    <span class="max-temp">30</span>
+
+                    <span>Min temp</span>
+                    <span class="min-temp">25</span>
+                </div>
+
+                <div class="humidity-wind">
+                    <span>Humidity</span>
+                    <span class="humidity">70%</span>
+
+                    <span>Wind</span>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/arrow.svg?alt=media&token=cd099dc0-d014-4525-ae34-2f4023918095" alt="">
+                    <span class="wind">10km/h</span>
+                </div>
+            </div>
+
+            <li>
+                <span class="day">Day 3</span>
+                <div>
+                    <span class="temp">--</span>
+                    <img src="" alt="" class="weather-img">
+                </div>
+            </li>
+
+            <div class="details">
+                <span>10/10/2019</span>
+
+                <h4>Overcast clouds</h4>
+
+                <div class="min-max-temp">
+                    <span>Max temp</span>
+                    <span class="max-temp">30</span>
+
+                    <span>Min temp</span>
+                    <span class="min-temp">25</span>
+                </div>
+
+                <div class="humidity-wind">
+                    <span>Humidity</span>
+                    <span class="humidity">70%</span>
+
+                    <span>Wind</span>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/arrow.svg?alt=media&token=cd099dc0-d014-4525-ae34-2f4023918095" alt="">
+                    <span class="wind">10km/h</span>
+                </div>
+            </div>
+
+            <li>
+                <span class="day">Day 4</span>
+                <div>
+                    <span class="temp">--</span>
+                    <img src="" alt="" class="weather-img">
+                </div>
+            </li>
+
+            <div class="details">
+             <span>10/10/2019</span>
+
+                <h4>Overcast clouds</h4>
+
+                <div class="min-max-temp">
+                    <span>Max temp</span>
+                    <span class="max-temp">30</span>
+
+                    <span>Min temp</span>
+                    <span class="min-temp">25</span>
+                </div>
+
+                <div class="humidity-wind">
+                    <span>Humidity</span>
+                    <span class="humidity">70%</span>
+
+                    <span>Wind</span>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/arrow.svg?alt=media&token=cd099dc0-d014-4525-ae34-2f4023918095" alt="">
+                    <span class="wind">10km/h</span>
+                </div>
+            </div>
+
+            <li>
+                <span class="day">Day 5</span>
+                <div>
+                    <span class="temp">--</span>
+                    <!--<img src="" alt="" class="weather-img">-->
+                </div>
+            </li>
+            
+            <div class="details">
+                <span>10/10/2019</span>
+
+                <h4>Overcast clouds</h4>
+
+                <div class="min-max-temp">
+                    <span>Max temp</span>
+                    <span class="max-temp">30</span>
+
+                    <span>Min temp</span>
+                    <span class="min-temp">25</span>
+                </div>
+
+                <div class="humidity-wind">
+                    <span>Humidity</span>
+                    <span class="humidity">70%</span>
+
+                    <span>Wind</span>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/sja-alumni.appspot.com/o/arrow.svg?alt=media&token=cd099dc0-d014-4525-ae34-2f4023918095" alt="">
+                    <span class="wind">10km/h</span>
+                </div>
+            </div>
+        </ul>
+    </section>
+
+    <footer></footer>
+    
+</body>
+</html>
