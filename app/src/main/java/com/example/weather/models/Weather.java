@@ -204,11 +204,11 @@ public class Weather {
 
     public void setLat(double lat) {this.lat = lat; }
 
-    public double getLat() { return this.lat; }
+    public double getLat() { return lat; }
 
     public void setLon(double lon) { this.lon = lon; }
 
-    public double getLon() { return this.lon; }
+    public double getLon() { return lon; }
 
     public double getUvIndex() { return this.uvIndex; }
 
