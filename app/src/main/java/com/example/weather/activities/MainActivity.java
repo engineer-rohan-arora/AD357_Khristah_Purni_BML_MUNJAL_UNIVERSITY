@@ -699,10 +699,10 @@ public class MainActivity extends BaseActivity implements LocationListener {
             Intent intent = new Intent(MainActivity.this, GraphActivity.class);
             startActivity(intent);
         }
-        /*if (id == R.id.action_flood) {
+        if (id == R.id.action_flood) {
             Intent intent = new Intent(MainActivity.this, flood.class);
             startActivity(intent);
-        }*/
+        }
         if (id == R.id.action_search) {
             searchCities();
             return true;
